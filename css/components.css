@@ -461,11 +461,12 @@
         flex-direction: column;
         align-items: stretch;
         padding: var(--space-6);
+        padding-bottom: calc(var(--space-8) + env(safe-area-inset-bottom));
         background: var(--color-white);
         border-top: 1px solid var(--border-color);
         transform: translateX(100%);
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        gap: var(--space-1);
+        gap: var(--space-3);
         z-index: 10000;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
