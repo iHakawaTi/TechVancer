@@ -1,0 +1,383 @@
+/* ============================================
+   Service Page Specific Components
+   ============================================ */
+
+/* Service Intro Grid */
+.service-intro {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: var(--space-12);
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .service-intro {
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
+    }
+}
+
+/* Stats Card */
+.stats-card {
+    background: var(--accent-gradient);
+    color: var(--color-white);
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+}
+
+.stats-number {
+    font-size: var(--text-6xl);
+    font-weight: var(--font-bold);
+    line-height: 1;
+    margin-bottom: var(--space-2);
+}
+
+.stats-label {
+    font-size: var(--text-lg);
+    opacity: 0.95;
+    font-weight: var(--font-medium);
+}
+
+/* Process Steps */
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-8);
+    margin-top: var(--space-12);
+}
+
+@media (max-width: 1100px) {
+    .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-6);
+    }
+}
+
+@media (max-width: 640px) {
+    .process-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+}
+
+.process-step {
+    text-align: center;
+    position: relative;
+    padding: var(--space-6);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    transition: all var(--transition-base);
+}
+
+.process-step:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-secondary);
+}
+
+/* Arrows removed for cleaner appearance */
+
+.process-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--accent-gradient);
+    color: var(--color-white);
+    border-radius: var(--radius-full);
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    margin-bottom: var(--space-4);
+}
+
+.process-step h3 {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-3);
+    color: var(--text-primary);
+}
+
+.process-step p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+}
+
+/* Capability Cards */
+.capability-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+    margin-top: var(--space-8);
+}
+
+@media (max-width: 900px) {
+    .capability-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-5);
+    }
+}
+
+.capability-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    transition: all var(--transition-base);
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+}
+
+.capability-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-secondary);
+}
+
+.capability-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(71, 162, 244, 0.1);
+    border-radius: var(--radius-lg);
+    color: var(--accent-secondary);
+}
+
+.capability-icon i {
+    width: 24px;
+    height: 24px;
+}
+
+.capability-content h3 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-2);
+    color: var(--text-primary);
+}
+
+.capability-content p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+}
+
+/* Why Us Grid */
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+    margin-top: var(--space-12);
+}
+
+@media (max-width: 900px) {
+    .why-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+}
+
+.why-card {
+    text-align: center;
+    padding: var(--space-8);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    transition: all var(--transition-base);
+}
+
+.why-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-secondary);
+}
+
+.why-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-gradient);
+    border-radius: var(--radius-lg);
+    color: var(--color-white);
+}
+
+.why-icon i {
+    width: 32px;
+    height: 32px;
+}
+
+.why-card h3 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-2);
+    color: var(--text-primary);
+}
+
+.why-stat {
+    font-size: var(--text-4xl);
+    font-weight: var(--font-bold);
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: var(--space-3);
+}
+
+.why-card p {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+}
+
+/* FAQ Accordion */
+.faq-container {
+    max-width: 800px;
+    margin: var(--space-12) auto 0;
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--border-color);
+    padding: var(--space-5) 0;
+}
+
+.faq-item:first-child {
+    border-top: 1px solid var(--border-color);
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: var(--font-semibold);
+    color: var(--text-primary);
+    font-size: var(--text-lg);
+    transition: color var(--transition-base);
+    user-select: none;
+}
+
+.faq-question:hover {
+    color: var(--accent-primary);
+}
+
+.faq-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    color: var(--accent-secondary);
+    transition: transform var(--transition-base);
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-slow);
+    color: var(--text-secondary);
+    padding-right: var(--space-8);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+    padding-top: var(--space-4);
+}
+
+.faq-answer p {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+}
+
+/* Contact Form */
+.contact-form-section {
+    background: var(--bg-card);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-12);
+    box-shadow: var(--shadow-xl);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+    margin-top: var(--space-8);
+}
+
+@media (max-width: 640px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--text-primary);
+}
+
+.form-input,
+.form-textarea {
+    padding: var(--space-4);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: var(--text-base);
+    font-family: var(--font-primary);
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+    transition: all var(--transition-base);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(71, 162, 244, 0.1);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-submit {
+    margin-top: var(--space-4);
+}
+
+/* CTA Section Form Styling */
+.cta-section {
+    background: linear-gradient(135deg, var(--color-royal-blue) 0%, var(--color-deep-navy) 100%);
+    color: var(--color-white);
+}
+
+.cta-section .contact-form-section h2 {
+    color: var(--color-white);
+}
+
+.cta-section .contact-form-section p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.cta-section .form-label {
+    color: rgba(255, 255, 255, 0.95);
+}
