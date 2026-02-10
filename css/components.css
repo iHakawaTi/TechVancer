@@ -344,11 +344,15 @@
     display: flex;
     align-items: center;
     gap: var(--space-3);
+    text-decoration: none;
+    flex-shrink: 0;
 }
 
 .navbar-logo img {
     height: 40px;
-    width: auto;
+    width: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
 .navbar-logo-text {
@@ -393,10 +397,12 @@
     align-items: center;
     justify-content: center;
     background: rgba(71, 162, 244, 0.1);
+    border: none;
     border-radius: var(--radius-full);
     color: var(--accent-secondary);
     cursor: pointer;
     transition: all var(--transition-base);
+    flex-shrink: 0;
 }
 
 .theme-toggle:hover {
@@ -434,6 +440,9 @@
     justify-content: center;
     color: var(--text-primary);
     cursor: pointer;
+    border: none;
+    background: none;
+    flex-shrink: 0;
 }
 
 .navbar-toggle svg {
@@ -457,6 +466,9 @@
         transform: translateX(100%);
         transition: transform var(--transition-base);
         gap: var(--space-2);
+        z-index: var(--z-modal);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .navbar-menu.active {
@@ -465,7 +477,8 @@
 
     .navbar-link {
         padding: var(--space-4);
-        font-size: var(--text-base);
+        font-size: var(--text-lg);
+        border-radius: var(--radius-lg);
     }
 
     .navbar-toggle {
