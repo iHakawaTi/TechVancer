@@ -250,7 +250,8 @@
 /* ============================================
    Page Transition
    ============================================ */
-.page-transition {
+/* Target direct children of body (excluding navbar, scripts, styles) */
+body.page-transition>*:not(.navbar):not(script):not(style) {
     animation: pageIn 0.5s ease forwards;
 }
 

@@ -213,12 +213,7 @@
         initForms();
         initCookieConsent();
 
-        // Add page transition class, then remove after animation to prevent
-        // transform from breaking position:fixed elements (mobile nav drawer)
+        // Add page transition class (animation targets content only via CSS)
         document.body.classList.add('page-transition');
-        document.body.addEventListener('animationend', () => {
-            document.body.classList.remove('page-transition');
-            document.body.style.transform = 'none';
-        }, { once: true });
     });
 })();
