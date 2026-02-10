@@ -322,7 +322,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: var(--z-modal);
+    z-index: 9999;
     background: var(--bg-navbar);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -466,7 +466,7 @@
         transform: translateX(100%);
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         gap: var(--space-1);
-        z-index: var(--z-tooltip);
+        z-index: 10000;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
     }
