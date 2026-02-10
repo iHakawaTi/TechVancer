@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Nav Debug</title>
+    <link rel="stylesheet" href="css/variables.min.css">
+    <link rel="stylesheet" href="css/base.min.css">
+    <link rel="stylesheet" href="css/components.min.css">
+    <link rel="stylesheet" href="css/animations.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/theme.min.js"></script>
+    <style>
+        #debug-panel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            color: #0f0;
+            font-family: monospace;
+            font-size: 12px;
+            padding: 10px;
+            z-index: 99999;
+            max-height: 40vh;
+            overflow-y: auto;
+        }
+
+        #debug-panel p {
+            color: #0f0;
+            margin: 2px 0;
+        }
+
+        #debug-panel .warn {
+            color: #ff0;
+        }
+
+        #debug-panel .err {
+            color: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Same navbar as index.html -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <img src="logo_final.png" alt="TechVancer Logo" class="navbar-logo-icon"
+                    style="width: 40px; height: 40px; object-fit: contain;">
+                <span class="navbar-logo-text">TechVancer</span>
+            </a>
+            <div class="navbar-menu" id="navMenu">
+                <a href="index.html" class="navbar-link active">Home</a>
+                <a href="#" class="navbar-link">Services</a>
+                <a href="why-us.html" class="navbar-link">Why Us</a>
+                <a href="about-us.html" class="navbar-link">About</a>
+                <a href="careers.html" class="navbar-link">Careers</a>
+                <a href="contact-us.html" class="navbar-link">Contact</a>
+            </div>
+            <div class="navbar-actions">
+                <button class="theme-toggle" aria-label="Toggle theme">
+                    <i data-lucide="moon" class="icon-moon"></i>
+                    <i data-lucide="sun" class="icon-sun"></i>
+                </button>
+                <button class="navbar-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+                    <i data-lucide="menu" class="icon-hamburger"></i>
+                    <i data-lucide="x" class="icon-close" style="display: none;"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div style="padding: 100px 20px 300px;">
+        <h1>Mobile Nav Debug Page</h1>
+        <p>Tap the hamburger menu. The debug panel below shows computed styles.</p>
+        <button onclick="runDebug()"
+            style="padding: 12px 24px; background: #1832ED; color: white; border: none; border-radius: 8px; font-size: 16px; margin-top: 20px;">
+            Run Debug Check
+        </button>
+    </div>
+
+    <div id="debug-panel">
+        <p>⏳ Tap hamburger then tap "Run Debug Check"</p>
+    </div>
+
+    <script src="js/main.min.js"></script>
+    <script>lucide.createIcons();</script>
+    <script>
+        function log(msg, cls) {
+            const p = document.createElement('p');
+            p.className = cls || '';
+            p.textContent = msg;
+            document.getElementById('debug-panel').appendChild(p);
+        }
+
+        function runDebug() {
+            const panel = document.getElementById('debug-panel');
+            panel.innerHTML = '<p>🔍 Running diagnostics...</p>';
+
+            const nav = document.querySelector('.navbar');
+            const menu = document.querySelector('.navbar-menu');
+            const toggle = document.querySelector('.navbar-toggle');
+            const container = document.querySelector('.navbar-container');
+
+            // Check viewport
+            log(`📱 Viewport: ${window.innerWidth}x${window.innerHeight}`);
+            log(`📱 Screen: ${screen.width}x${screen.height}`);
+
+            // Check if toggle is visible
+            const toggleStyle = getComputedStyle(toggle);
+            log(`🔘 Toggle display: ${toggleStyle.display}`);
+            log(`🔘 Toggle visibility: ${toggleStyle.visibility}`);
+            log(`🔘 Toggle dimensions: ${toggle.offsetWidth}x${toggle.offsetHeight}`);
+
+            // Check navbar
+            const navStyle = getComputedStyle(nav);
+            log(`📌 Navbar position: ${navStyle.position}`);
+            log(`📌 Navbar z-index: ${navStyle.zIndex}`);
+            log(`📌 Navbar height: ${nav.offsetHeight}px`);
+
+            // Check menu state
+            const menuStyle = getComputedStyle(menu);
+            log(`📋 Menu has .active: ${menu.classList.contains('active')}`, menu.classList.contains('active') ? '' : 'warn');
+            log(`📋 Menu position: ${menuStyle.position}`);
+            log(`📋 Menu z-index: ${menuStyle.zIndex}`);
+            log(`📋 Menu transform: ${menuStyle.transform}`);
+            log(`📋 Menu display: ${menuStyle.display}`);
+            log(`📋 Menu visibility: ${menuStyle.visibility}`);
+            log(`📋 Menu opacity: ${menuStyle.opacity}`);
+            log(`📋 Menu overflow: ${menuStyle.overflow}`);
+            log(`📋 Menu top: ${menuStyle.top}`);
+            log(`📋 Menu left: ${menuStyle.left}`);
+            log(`📋 Menu right: ${menuStyle.right}`);
+            log(`📋 Menu bottom: ${menuStyle.bottom}`);
+            log(`📋 Menu width: ${menu.offsetWidth}px`);
+            log(`📋 Menu height: ${menu.offsetHeight}px`);
+            log(`📋 Menu background: ${menuStyle.backgroundColor}`);
+
+            // Check bounding rect
+            const rect = menu.getBoundingClientRect();
+            log(`📐 Menu rect: top=${rect.top}, left=${rect.left}, width=${rect.width}, height=${rect.height}`);
+
+            if (rect.left >= window.innerWidth) {
+                log('❌ MENU IS OFFSCREEN (translateX still active)', 'err');
+            } else if (rect.width === 0 || rect.height === 0) {
+                log('❌ MENU HAS NO DIMENSIONS', 'err');
+            } else if (rect.top < 0 || rect.left < 0) {
+                log('⚠️ Menu is partially offscreen', 'warn');
+            } else {
+                log('✅ Menu appears to be visible on screen');
+            }
+
+            // Check for clipping ancestors
+            let el = menu.parentElement;
+            let depth = 0;
+            while (el && depth < 10) {
+                const s = getComputedStyle(el);
+                if (s.overflow !== 'visible' && s.overflow !== '') {
+                    log(`⚠️ Ancestor "${el.tagName}.${el.className}" overflow: ${s.overflow}`, 'warn');
+                }
+                if (s.zIndex !== 'auto') {
+                    log(`📊 Ancestor "${el.tagName}.${el.className}" z-index: ${s.zIndex}`);
+                }
+                if (s.transform && s.transform !== 'none') {
+                    log(`🔄 Ancestor "${el.tagName}.${el.className}" transform: ${s.transform}`, 'warn');
+                }
+                el = el.parentElement;
+                depth++;
+            }
+
+            // Check all links in menu
+            const links = menu.querySelectorAll('.navbar-link');
+            log(`🔗 Number of links in menu: ${links.length}`);
+            links.forEach((link, i) => {
+                const lr = link.getBoundingClientRect();
+                const vis = lr.top >= 0 && lr.top < window.innerHeight;
+                log(`  Link ${i}: "${link.textContent}" - top:${Math.round(lr.top)} h:${Math.round(lr.height)} visible:${vis}`, vis ? '' : 'err');
+            });
+
+            // Check body overflow
+            const bodyStyle = getComputedStyle(document.body);
+            log(`🔒 Body overflow: ${bodyStyle.overflow}`);
+            log(`🔒 Body overflow-x: ${bodyStyle.overflowX}`);
+            log(`🔒 HTML overflow: ${getComputedStyle(document.documentElement).overflow}`);
+
+            log('--- Debug complete ---');
+        }
+    </script>
+</body>
+
+</html>
